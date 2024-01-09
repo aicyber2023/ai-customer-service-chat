@@ -1,10 +1,10 @@
 import webpack from "webpack";
 
 const mode = process.env.BUILD_MODE ?? "standalone";
-console.log("[Next] build mode", mode);
+//console.log("[Next] build mode", mode);
 
 const disableChunk = !!process.env.DISABLE_CHUNK || mode === "export";
-console.log("[Next] build with chunk: ", !disableChunk);
+//console.log("[Next] build with chunk: ", !disableChunk);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -26,6 +26,7 @@ const nextConfig = {
 
     return config;
   },
+  distDir: 'customer-service-chat',
   output: mode,
   images: {
     unoptimized: mode === "export",
@@ -78,7 +79,7 @@ if (mode !== "export") {
 
     const apiUrl = process.env.API_URL;
     if (apiUrl) {
-      console.log("[Next] using api url ", apiUrl);
+      //console.log("[Next] using api url ", apiUrl);
       ret.push({
         source: "/api/:path*",
         destination: `${apiUrl}/:path*`,

@@ -18,7 +18,7 @@ import { MaskAvatar } from "./mask";
 import { Mask } from "../store/mask";
 import { useRef, useEffect } from "react";
 import { showConfirm } from "./ui-lib";
-import {log} from "mermaid/dist/logger";
+import { log } from "mermaid/dist/logger";
 
 export function ChatItem(props: {
   onClick?: () => void;
@@ -62,7 +62,10 @@ export function ChatItem(props: {
             <div className={styles["chat-item-narrow"]}>
               <div className={styles["chat-item-avatar"] + " no-dark"}>
                 {/*<MaskAvatar mask={props.mask} />*/}
-                <img src={"data:image/jpeg;base64," + props.mask.avatar} width={10}/>
+                <img
+                  src={"data:image/jpeg;base64," + props.mask.avatar}
+                  width={10}
+                />
               </div>
               <div className={styles["chat-item-narrow-count"]}>
                 {props.count}
@@ -101,7 +104,7 @@ export function ChatList(props: { narrow?: boolean }) {
       state.moveSession,
     ],
   );
-  // console.log(sessions)
+  // //console.log(sessions)
   const chatStore = useChatStore();
   const navigate = useNavigate();
 
@@ -140,7 +143,7 @@ export function ChatList(props: { narrow?: boolean }) {
                 index={i}
                 selected={i === selectedIndex}
                 onClick={() => {
-                  localStorage.setItem("employeeId",item.mask.id)
+                  localStorage.setItem("employeeId", item.mask.id);
                   navigate(Path.Chat);
                   selectSession(i);
                 }}
@@ -149,7 +152,7 @@ export function ChatList(props: { narrow?: boolean }) {
                     !props.narrow ||
                     (await showConfirm(Locale.Home.DeleteChat))
                   ) {
-                    if (chatStore.sessions.length>1){
+                    if (chatStore.sessions.length > 1) {
                       chatStore.deleteSession(i);
                     }
                   }

@@ -8,7 +8,7 @@ import { StoreKey } from "../constant";
 import { nanoid } from "nanoid";
 
 export type Mask = {
-    templateId: string;
+  templateId: string;
   id: string;
   createdAt: number;
   avatar: string;
@@ -38,7 +38,7 @@ type MaskStore = MaskState & {
 export const DEFAULT_MASK_AVATAR = "gpt-bot";
 export const createEmptyMask = () =>
   ({
-      templateId:"",
+    templateId: "",
     id: nanoid(),
     avatar: DEFAULT_MASK_AVATAR,
     name: "DEFAULT_TOPIC",
@@ -103,7 +103,7 @@ export const useMaskStore = create<MaskStore>()(
               },
             } as Mask),
         );
-          console.log("sss",buildinMasks)
+        //console.log("sss",buildinMasks)
         return userMasks.concat(buildinMasks);
       },
       search(text) {

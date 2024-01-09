@@ -5,7 +5,7 @@ import {
   REQUEST_TIMEOUT_MS,
 } from "@/app/constant";
 import { useAccessStore, useAppConfig, useChatStore } from "@/app/store";
-import  baseURL from "@/app/config/url"
+import baseURL from "@/app/config/url";
 import { ChatOptions, getHeaders, LLMApi, LLMModel, LLMUsage } from "../api";
 import Locale from "../../locales";
 import {
@@ -14,6 +14,9 @@ import {
 } from "@fortaine/fetch-event-source";
 import { prettyObject } from "@/app/utils/format";
 import { getClientConfig } from "@/app/config/client";
+import axios from "axios";
+import exports from "webpack";
+import baseURI = exports.RuntimeGlobals.baseURI;
 
 export interface OpenAIListModelResponse {
   object: string;
@@ -31,7 +34,8 @@ export class ChatGPTApi implements LLMApi {
     let openaiUrl = useAccessStore.getState().openaiUrl;
     const apiPath = "/api/openai";
 
-    if (openaiUrl.length === 0) {OpenaiPath
+    if (openaiUrl.length === 0) {
+      OpenaiPath;
       const isApp = !!getClientConfig()?.isApp;
       openaiUrl = isApp ? DEFAULT_API_HOST : apiPath;
     }
@@ -49,11 +53,17 @@ export class ChatGPTApi implements LLMApi {
   }
 
   async chat(options: ChatOptions) {
-    let AllMessage = options.messages.map((v) => ({
-      role: v.role,
-      content: v.content,
-    }));
-
+    //console.log(options)
+    const isTest = Boolean(JSON.parse(<string>localStorage.getItem("isTest")));
+    // 访客
+    const isVisitor = Boolean(
+      JSON.parse(<string>localStorage.getItem("isVisitor")),
+    );
+    options.config.stream = false;
+    let msg = [
+      options.messages[options.messages.length - 1],
+      options.messages[options.messages.length - 2],
+    ];
     const modelConfig = {
       ...useAppConfig.getState().modelConfig,
       ...useChatStore.getState().currentSession().mask.modelConfig,
@@ -61,27 +71,28 @@ export class ChatGPTApi implements LLMApi {
         model: options.config.model,
       },
     };
-    let messages: string | any[]=[];
-    messages.push(AllMessage[AllMessage.length-1])
+    let messages: string | any[] = [];
+    for (const item of msg) {
+      if (item.role == "user") {
+        messages.push(item);
+        break;
+      }
+    }
+    const question = messages[0].content;
     const requestPayload = {
-      messages,
-      stream: options.config.stream,
-      employeeId:localStorage.getItem("employeeId"),
-      // model: modelConfig.model,
-      // temperature: modelConfig.temperature,
-      // presence_penalty: modelConfig.presence_penalty,
-      // frequency_penalty: modelConfig.frequency_penalty,
-      // top_p: modelConfig.top_p,
+      digitalEmployeeId: localStorage.getItem("employeeId"),
+      userInput: question,
     };
-    console.log("[Request] openai payload: ", requestPayload);
+    //console.log("[Request] openai payload: ", requestPayload);
 
     const shouldStream = !!options.config.stream;
     const controller = new AbortController();
     options.onController?.(controller);
-
     try {
-      // const chatPath = this.path(OpenaiPath.ChatPath);
-      const chatPath = baseURL.chatPath;
+      const chatPath =
+        baseURL.baseURL +
+        `${isTest ? "/de/bizChat/chat" : ""}` +
+        `${isVisitor ? "/de/bizChat/anonymousChat" : ""}`;
       const chatPayload = {
         method: "POST",
         body: JSON.stringify(requestPayload),
@@ -91,7 +102,7 @@ export class ChatGPTApi implements LLMApi {
         //   "Chat-Auth":localStorage.getItem("token"),
         // }
       };
-      console.log("222",getHeaders())
+      //console.log("222",getHeaders())
       // make a fetch request
       const requestTimeoutId = setTimeout(
         () => controller.abort(),
@@ -113,13 +124,13 @@ export class ChatGPTApi implements LLMApi {
         fetchEventSource(chatPath, {
           ...chatPayload,
           async onopen(res) {
-            console.log("res",res)
+            //console.log("res",res)
             clearTimeout(requestTimeoutId);
             const contentType = res.headers.get("content-type");
-            console.log(
-              "[OpenAI] request response content type: ",
-              contentType,
-            );
+            //console.log(
+            //   "[OpenAI] request response content type: ",
+            //   contentType,
+            // );
 
             if (contentType?.startsWith("text/plain")) {
               responseText = await res.clone().text();
@@ -152,24 +163,23 @@ export class ChatGPTApi implements LLMApi {
 
               return finish();
             }
-
           },
           //当有数据回来时
           onmessage(msg) {
-            console.log("msg",msg)
+            //console.log("msg",msg)
             if (msg.data === "[DONE]" || finished) {
               return finish();
             }
             const text = msg.data;
-            try { 
+            try {
               const json = JSON.parse(text);
-              if (json.max_tokens){
-                console.log("gpt参数配置-->",json)
+              if (json.max_tokens) {
+                //console.log("gpt参数配置-->",json)
               }
               const delta = json.choices[0].delta.content;
               if (delta) {
                 //每一次返回的数据
-                console.log(delta)
+                //console.log(delta)
                 responseText += delta;
                 options.onUpdate?.(responseText, delta);
               }
@@ -187,15 +197,28 @@ export class ChatGPTApi implements LLMApi {
           openWhenHidden: true,
         });
       } else {
-        const res = await fetch(chatPath, chatPayload);
+        //console.log(chatPath)
+        axios({
+          url: chatPath,
+          method: "POST",
+          data: requestPayload,
+          signal: controller.signal,
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("header"),
+          },
+        }).then((res) => {
+          if (res.data.code == 200) {
+            const message = res.data.data.outputText;
+            options.onFinish(message);
+          } else {
+            const message = res.data.msg;
+            options.onFinish(message);
+          }
+        });
         clearTimeout(requestTimeoutId);
-
-        const resJson = await res.json();
-        const message = this.extractMessage(resJson);
-        options.onFinish(message);
       }
     } catch (e) {
-      console.log("[Request] failed to make a chat request", e);
+      //console.log("[Request] failed to make a chat request", e);
       options.onError?.(e as Error);
     }
   }
@@ -279,7 +302,7 @@ export class ChatGPTApi implements LLMApi {
 
     const resJson = (await res.json()) as OpenAIListModelResponse;
     const chatModels = resJson.data?.filter((m) => m.id.startsWith("gpt-"));
-    console.log("[Models]", chatModels);
+    //console.log("[Models]", chatModels);
 
     if (!chatModels) {
       return [];

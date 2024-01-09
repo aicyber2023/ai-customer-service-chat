@@ -99,7 +99,7 @@ export class ClientApi {
     // 敬告二开开发者们，为了开源大模型的发展，请不要修改上述消息，此消息用于后续数据清洗使用
     // Please do not modify this message
 
-    console.log("[Share]", messages, msgs);
+    //console.log("[Share]", messages, msgs);
     const clientConfig = getClientConfig();
     const proxyUrl = "/sharegpt";
     const rawUrl = "https://sharegpt.com/api/conversations";
@@ -116,7 +116,7 @@ export class ClientApi {
     });
 
     const resJson = await res.json();
-    console.log("[Share]", resJson);
+    //console.log("[Share]", resJson);
     if (resJson.id) {
       return `https://shareg.pt/${resJson.id}`;
     }
@@ -131,7 +131,7 @@ export function getHeaders() {
   let headers: Record<string, string> = {
     // "Content-Type": "application/json",
     // "x-requested-with": "XMLHttpRequest",
-    "Chat-Auth":String(localStorage.getItem("token")),
+    "Chat-Auth": String(localStorage.getItem("token")),
   };
 
   // const makeBearer = (token: string) => `Bearer ${token.trim()}`;

@@ -93,7 +93,7 @@ export const useUpdateStore = create<UpdateStore>()(
           set(() => ({
             remoteVersion: remoteId,
           }));
-          console.log("[Got Upstream] ", remoteId);
+          //console.log("[Got Upstream] ", remoteId);
         } catch (error) {
           console.error("[Fetch Upstream Commit Id]", error);
         }

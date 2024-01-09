@@ -1,5 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { ChatMessage, useAppConfig, useChatStore,useChatStoreTest } from "../store";
+import {
+  ChatMessage,
+  useAppConfig,
+  useChatStore,
+  useChatStoreTest,
+} from "../store";
 import Locale from "../locales";
 import styles from "./exporter.module.scss";
 import {
@@ -142,7 +147,7 @@ export function MessageExporter() {
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const chatStore = query.get("isTest")?useChatStoreTest():useChatStore();
+  const chatStore = query.get("isTest") ? useChatStoreTest() : useChatStore();
   const session = chatStore.currentSession();
   const { selection, updateSelection } = useMessageSelector();
   const selectedMessages = useMemo(() => {
@@ -402,7 +407,7 @@ export function ImagePreviewer(props: {
   topic: string;
 }) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const chatStore = query.get("isTest")?useChatStoreTest():useChatStore();
+  const chatStore = query.get("isTest") ? useChatStoreTest() : useChatStore();
   const session = chatStore.currentSession();
   const mask = session.mask;
   const config = useAppConfig();
@@ -438,20 +443,18 @@ export function ImagePreviewer(props: {
     showToast(Locale.Export.Image.Toast);
     const dom = previewRef.current;
     if (!dom) return;
-    toPng(dom)
-      .then((blob) => {
-        if (!blob) return;
+    toPng(dom).then((blob) => {
+      if (!blob) return;
 
-        if (isMobile || getClientConfig()?.isApp) {
-          showImageModal(blob);
-        } else {
-          const link = document.createElement("a");
-          link.download = `${props.topic}.png`;
-          link.href = blob;
-          link.click();
-        }
-      })
-      .catch((e) => console.log("[Export Image] ", e));
+      if (isMobile || getClientConfig()?.isApp) {
+        showImageModal(blob);
+      } else {
+        const link = document.createElement("a");
+        link.download = `${props.topic}.png`;
+        link.href = blob;
+        link.click();
+      }
+    });
   };
 
   return (
@@ -477,7 +480,7 @@ export function ImagePreviewer(props: {
           </div>
 
           <div>
-            <div className={styles["main-title"]}>奥图AI</div>
+            <div className={styles["main-title"]}>奥图智能客服</div>
             <div className={styles["sub-title"]}>
               github.com/Yidadaa/ChatGPT-Next-Web
             </div>

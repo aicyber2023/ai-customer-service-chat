@@ -1,7 +1,7 @@
-const CHATGPT_NEXT_WEB_CACHE = "奥图AI";
+const CHATGPT_NEXT_WEB_CACHE = "奥图智能客服";
 
 self.addEventListener("activate", function (event) {
-  console.log("ServiceWorker activated.");
+  //console.log("ServiceWorker activated.");
 });
 
 self.addEventListener("install", function (event) {
