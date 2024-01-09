@@ -73,7 +73,7 @@ const bn: PartialLocaleType = {
     Copy: "সমস্তটি কপি করুন",
     Download: "ডাউনলোড করুন",
     MessageFromYou: "আপনার বার্তা",
-    MessageFromChatGPT: "চ্যাটজিপিটির বার্তা",
+    MessageFromAoTu: "চ্যাটজিপিটির বার্তা",
     Share: "শেয়ার করুন শেয়ারজিপিটি তে",
     Format: {
       Title: "রপ্তানি ফরম্যাট",
@@ -138,7 +138,7 @@ const bn: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "حقن تلميحات النظام",
       SubTitle:
-        "قم بإضافة تلميحة نظام محاكاة ChatGPT إلى بداية قائمة الرسائل المُطلَبة في كل طلب",
+        "قم بإضافة تلميحة نظام محاكاة AoTu إلى بداية قائمة الرسائل المُطلَبة في كل طلب",
     },
     InputTemplate: {
       Title: "ইনপুট টেমপ্লেট",

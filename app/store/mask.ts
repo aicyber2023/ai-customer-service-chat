@@ -35,7 +35,7 @@ type MaskStore = MaskState & {
   getAll: () => Mask[];
 };
 
-export const DEFAULT_MASK_AVATAR = "gpt-bot";
+export const DEFAULT_MASK_AVATAR = "AoTu-bot";
 export const createEmptyMask = () =>
   ({
     templateId: "",

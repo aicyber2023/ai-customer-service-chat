@@ -11,7 +11,7 @@ const jp: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} 通のチャット`,
   },
   Chat: {
-    SubTitle: (count: number) => `ChatGPTとの ${count} 通のチャット`,
+    SubTitle: (count: number) => `AoTuとの ${count} 通のチャット`,
     Actions: {
       ChatList: "メッセージリストを表示",
       CompressedHistory: "圧縮された履歴プロンプトを表示",
@@ -41,7 +41,7 @@ const jp: PartialLocaleType = {
     Copy: "すべてコピー",
     Download: "ファイルをダウンロード",
     MessageFromYou: "あなたからのメッセージ",
-    MessageFromChatGPT: "ChatGPTからのメッセージ",
+    MessageFromAoTu: "AoTuからのメッセージ",
   },
   Memory: {
     Title: "履歴メモリ",
@@ -87,7 +87,7 @@ const jp: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "システムプロンプトの挿入",
       SubTitle:
-        "各リクエストのメッセージリストの先頭に、ChatGPTのシステムプロンプトを強制的に追加します",
+        "各リクエストのメッセージリストの先頭に、AoTuのシステムプロンプトを強制的に追加します",
     },
     InputTemplate: {
       Title: "入力の前処理",

@@ -69,24 +69,24 @@ export function AuthPage() {
         window.localStorage.removeItem("visitor");
         goHome();
         //     获取聊天记录
-        axios({
-          url: baseConfig.chatUrl + "/chat-history.do",
-          method: "post",
-          headers: {
-            "Chat-Auth": localStorage.getItem("token"),
-          },
-        }).then((res) => {
-          //console.log("history",res.data)
-          // chatStore.clearSessions()
-          // chatStore.newSession(res.data)
-          setTimeout(() => {
-            chatStore.setSessions(res.data.state.sessions);
-            localStorage.setItem(
-              "employeeId",
-              res.data.state.sessions[0].mask.id,
-            );
-          }, 1000);
-        });
+        // axios({
+        //   url: baseConfig.chatUrl + "/chat-history.do",
+        //   method: "post",
+        //   headers: {
+        //     "Chat-Auth": localStorage.getItem("token"),
+        //   },
+        // }).then((res) => {
+        //   //console.log("history",res.data)
+        //   // chatStore.clearSessions()
+        //   // chatStore.newSession(res.data)
+        //   setTimeout(() => {
+        //     chatStore.setSessions(res.data.state.sessions);
+        //     localStorage.setItem(
+        //       "employeeId",
+        //       res.data.state.sessions[0].mask.id,
+        //     );
+        //   }, 1000);
+        // });
       } else {
         alert(res.data.msg);
         //重新获取验证码

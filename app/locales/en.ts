@@ -86,8 +86,8 @@ const en: LocaleType = {
     Copy: "Copy All",
     Download: "Download",
     MessageFromYou: "Message From You",
-    MessageFromChatGPT: "Message From ChatGPT",
-    Share: "Share to ShareGPT",
+    MessageFromAoTu: "Message From AoTu",
+    Share: "Share to ShareAoTu",
     Format: {
       Title: "Export Format",
       SubTitle: "Markdown or PNG Image",

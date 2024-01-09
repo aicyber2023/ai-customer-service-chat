@@ -12,7 +12,7 @@ export interface AccessControlStore {
   needCode: boolean;
   hideUserApiKey: boolean;
   hideBalanceQuery: boolean;
-  disableGPT4: boolean;
+  disableAoTu4: boolean;
 
   openaiUrl: string;
 
@@ -38,7 +38,7 @@ export const useAccessStore = create<AccessControlStore>()(
       needCode: true,
       hideUserApiKey: false,
       hideBalanceQuery: false,
-      disableGPT4: false,
+      disableAoTu4: false,
 
       openaiUrl: DEFAULT_OPENAI_URL,
 
@@ -79,9 +79,9 @@ export const useAccessStore = create<AccessControlStore>()(
             //console.log("[Config] got config from server", res);
             set(() => ({ ...res }));
 
-            if (res.disableGPT4) {
+            if (res.disableAoTu4) {
               DEFAULT_MODELS.forEach(
-                (m: any) => (m.available = !m.name.startsWith("gpt-4")),
+                (m: any) => (m.available = !m.name.startsWith("AoTu-4")),
               );
             }
           })

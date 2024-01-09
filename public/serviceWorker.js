@@ -1,4 +1,4 @@
-const CHATGPT_NEXT_WEB_CACHE = "奥图智能客服";
+const AOTU_CACHE = "奥图智能客服";
 
 self.addEventListener("activate", function (event) {
   //console.log("ServiceWorker activated.");
@@ -6,7 +6,7 @@ self.addEventListener("activate", function (event) {
 
 self.addEventListener("install", function (event) {
   event.waitUntil(
-    caches.open(CHATGPT_NEXT_WEB_CACHE).then(function (cache) {
+    caches.open(AOTU_CACHE).then(function (cache) {
       return cache.addAll([]);
     }),
   );

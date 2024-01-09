@@ -10,7 +10,7 @@ const tw: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} 條對話`,
   },
   Chat: {
-    SubTitle: (count: number) => `您已經與 ChatGPT 進行了 ${count} 條對話`,
+    SubTitle: (count: number) => `您已經與 AoTu 進行了 ${count} 條對話`,
     Actions: {
       ChatList: "查看訊息列表",
       CompressedHistory: "查看壓縮後的歷史 Prompt",
@@ -40,7 +40,7 @@ const tw: PartialLocaleType = {
     Copy: "複製全部",
     Download: "下載檔案",
     MessageFromYou: "來自您的訊息",
-    MessageFromChatGPT: "來自 ChatGPT 的訊息",
+    MessageFromAoTu: "來自 AoTu 的訊息",
   },
   Memory: {
     Title: "上下文記憶 Prompt",
@@ -71,7 +71,7 @@ const tw: PartialLocaleType = {
     },
     InjectSystemPrompts: {
       Title: "注入系統提示",
-      SubTitle: "強制在每個請求的訊息列表開頭添加一個模擬 ChatGPT 的系統提示",
+      SubTitle: "強制在每個請求的訊息列表開頭添加一個模擬 AoTu 的系統提示",
     },
     Update: {
       Version: (x: string) => `當前版本：${x}`,

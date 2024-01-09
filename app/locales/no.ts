@@ -11,7 +11,7 @@ const no: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} meldinger`,
   },
   Chat: {
-    SubTitle: (count: number) => `${count} meldinger med ChatGPT`,
+    SubTitle: (count: number) => `${count} meldinger med AoTu`,
     Actions: {
       ChatList: "Gå til chatlisten",
       CompressedHistory: "Komprimert historikk for instrukser",
@@ -37,7 +37,7 @@ const no: PartialLocaleType = {
     Copy: "Kopiere alle",
     Download: "Last ned",
     MessageFromYou: "Melding fra deg",
-    MessageFromChatGPT: "Melding fra ChatGPT",
+    MessageFromAoTu: "Melding fra AoTu",
   },
   Memory: {
     Title: "Minneinstruks",
@@ -69,7 +69,7 @@ const no: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "Sett inn systemprompter",
       SubTitle:
-        "Tving tillegg av en simulert ChatGPT-systemprompt i begynnelsen av meldingslisten for hver forespørsel",
+        "Tving tillegg av en simulert AoTu-systemprompt i begynnelsen av meldingslisten for hver forespørsel",
     },
     Update: {
       Version: (x: string) => `Versjon: ${x}`,

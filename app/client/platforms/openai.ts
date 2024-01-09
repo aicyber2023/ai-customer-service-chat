@@ -27,7 +27,7 @@ export interface OpenAIListModelResponse {
   }>;
 }
 
-export class ChatGPTApi implements LLMApi {
+export class AoTuApi implements LLMApi {
   private disableListModels = true;
 
   path(path: string): string {
@@ -174,7 +174,7 @@ export class ChatGPTApi implements LLMApi {
             try {
               const json = JSON.parse(text);
               if (json.max_tokens) {
-                //console.log("gpt参数配置-->",json)
+                //console.log("AoTu参数配置-->",json)
               }
               const delta = json.choices[0].delta.content;
               if (delta) {
@@ -301,7 +301,7 @@ export class ChatGPTApi implements LLMApi {
     });
 
     const resJson = (await res.json()) as OpenAIListModelResponse;
-    const chatModels = resJson.data?.filter((m) => m.id.startsWith("gpt-"));
+    const chatModels = resJson.data?.filter((m) => m.id.startsWith("AoTu-"));
     //console.log("[Models]", chatModels);
 
     if (!chatModels) {

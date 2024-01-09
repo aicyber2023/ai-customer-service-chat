@@ -18,7 +18,7 @@ const ar: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} رسائل`,
   },
   Chat: {
-    SubTitle: (count: number) => ` ${count} رسائل مع ChatGPT`,
+    SubTitle: (count: number) => ` ${count} رسائل مع AoTu`,
     Actions: {
       ChatList: "الانتقال إلى قائمة الدردشة",
       CompressedHistory: "ملخص ضغط ذاكرة التاريخ",
@@ -61,8 +61,8 @@ const ar: PartialLocaleType = {
     Copy: "نسخ الكل",
     Download: "تنزيل",
     MessageFromYou: "رسالة منك",
-    MessageFromChatGPT: "رسالة من ChatGPT",
-    Share: "مشاركة على ShareGPT",
+    MessageFromAoTu: "رسالة من AoTu",
+    Share: "مشاركة على ShareAoTu",
     Format: {
       Title: "صيغة التصدير",
       SubTitle: "Markdown أو صورة PNG",
@@ -113,7 +113,7 @@ const ar: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "حقن تلميحات النظام",
       SubTitle:
-        "قم بإضافة تلميحة نظام محاكاة ChatGPT إلى بداية قائمة الرسائل المُطلَبة في كل طلب",
+        "قم بإضافة تلميحة نظام محاكاة AoTu إلى بداية قائمة الرسائل المُطلَبة في كل طلب",
     },
     InputTemplate: {
       Title: "نموذج الإدخال",

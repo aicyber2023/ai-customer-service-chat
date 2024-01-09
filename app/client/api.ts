@@ -1,12 +1,12 @@
 import { getClientConfig } from "../config/client";
 import { ACCESS_CODE_PREFIX } from "../constant";
 import { ChatMessage, ModelType, useAccessStore } from "../store";
-import { ChatGPTApi } from "./platforms/openai";
+import { AoTuApi } from "./platforms/openai";
 
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
 
-export const Models = ["gpt-3.5-turbo", "gpt-4"] as const;
+export const Models = ["AoTu-3.5-turbo", "AoTu-4"] as const;
 export type ChatModel = ModelType;
 
 export interface RequestMessage {
@@ -74,7 +74,7 @@ export class ClientApi {
   public llm: LLMApi;
 
   constructor() {
-    this.llm = new ChatGPTApi();
+    this.llm = new AoTuApi();
   }
 
   config() {}
@@ -86,14 +86,13 @@ export class ClientApi {
   async share(messages: ChatMessage[], avatarUrl: string | null = null) {
     const msgs = messages
       .map((m) => ({
-        from: m.role === "user" ? "human" : "gpt",
+        from: m.role === "user" ? "human" : "AoTu",
         value: m.content,
       }))
       .concat([
         {
           from: "human",
-          value:
-            "Share from [ChatGPT Next Web]: https://github.com/Yidadaa/ChatGPT-Next-Web",
+          value: "",
         },
       ]);
     // 敬告二开开发者们，为了开源大模型的发展，请不要修改上述消息，此消息用于后续数据清洗使用
@@ -101,8 +100,8 @@ export class ClientApi {
 
     //console.log("[Share]", messages, msgs);
     const clientConfig = getClientConfig();
-    const proxyUrl = "/sharegpt";
-    const rawUrl = "https://sharegpt.com/api/conversations";
+    const proxyUrl = "/shareAoTu";
+    const rawUrl = "https://shareAoTu.com/api/conversations";
     const shareUrl = clientConfig?.isApp ? rawUrl : proxyUrl;
     const res = await fetch(shareUrl, {
       body: JSON.stringify({

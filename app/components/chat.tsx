@@ -1455,7 +1455,7 @@ function _Chat() {
                           style={{ borderRadius: "20px" }}
                         />
                       ) : (
-                        // <Avatar model={"gpt-3.5-turbo"}/>
+                        // <Avatar model={"AoTu-3.5-turbo"}/>
                         <img
                           src={baseEmployeeAvatar.src}
                           width={40}

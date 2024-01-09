@@ -11,7 +11,7 @@ const it: PartialLocaleType = {
     ChatItemCount: (count: number) => `${count} messaggi`,
   },
   Chat: {
-    SubTitle: (count: number) => `${count} messaggi con ChatGPT`,
+    SubTitle: (count: number) => `${count} messaggi con AoTu`,
     Actions: {
       ChatList: "Vai alla Chat List",
       CompressedHistory: "Prompt di memoria della cronologia compressa",
@@ -41,7 +41,7 @@ const it: PartialLocaleType = {
     Copy: "Copia tutto",
     Download: "Scarica",
     MessageFromYou: "Messaggio da te",
-    MessageFromChatGPT: "Messaggio da ChatGPT",
+    MessageFromAoTu: "Messaggio da AoTu",
   },
   Memory: {
     Title: "Prompt di memoria",
@@ -74,7 +74,7 @@ const it: PartialLocaleType = {
     InjectSystemPrompts: {
       Title: "Inserisci Prompts di Sistema",
       SubTitle:
-        "Aggiungi forzatamente un prompt di sistema simulato di ChatGPT all'inizio della lista dei messaggi per ogni richiesta",
+        "Aggiungi forzatamente un prompt di sistema simulato di AoTu all'inizio della lista dei messaggi per ogni richiesta",
     },
     Update: {
       Version: (x: string) => `Versione: ${x}`,
@@ -144,7 +144,7 @@ const it: PartialLocaleType = {
       SubTitle: "Controllo d'accesso abilitato",
       Placeholder: "Inserisci il codice d'accesso",
     },
-    Model: "Modello GPT",
+    Model: "Modello AoTu",
     Temperature: {
       Title: "Temperature",
       SubTitle: "Un valore maggiore rende l'output più casuale",

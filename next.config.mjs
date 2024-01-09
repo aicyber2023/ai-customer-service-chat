@@ -72,8 +72,8 @@ if (mode !== "export") {
         destination: "https://fonts.googleapis.com/:path*",
       },
       {
-        source: "/sharegpt",
-        destination: "https://sharegpt.com/api/conversations",
+        source: "/shareAoTu",
+        destination: "https://shareAoTu.com/api/conversations",
       },
     ];
 

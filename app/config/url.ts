@@ -16,17 +16,10 @@ export default {
   closeUrl: "http://121.37.82.194:8202",
   // closeUrl:"http://127.0.0.1:28002",
 
-  // 本地
-  // chatPath: "http://192.168.1.49:8061/chat-server/chat-server/nsai/filter/chat-with-context.do",
-  // 测试
-  // chatPath : "http://192.168.2.24:8061/chat-server/chat-server/nsai/filter/chat-with-context.do",
-  // 线上
-  // chatPath : "http://121.37.82.194:8061/chat-server/chat-server/nsai/filter/chat-with-context.do",
-
   //     本地
   // chatUrl:"http://127.0.0.1:8080",
   // 测试
-  chatUrl: "http://192.168.2.24:8061/chat-server/chat-server/nsai/filter",
+  // chatUrl: "http://192.168.2.24:8061/chat-server/chat-server/nsai/filter",
   //线上
   // chatUrl: "http://121.37.82.194:8061/chat-server/chat-server/nsai/filter",
 };

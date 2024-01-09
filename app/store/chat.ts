@@ -395,7 +395,7 @@ export const useChatStore = create<ChatStore>()(
         // in-context prompts
         const contextPrompts = session.mask.context.slice();
 
-        // system prompts, to get close to OpenAI Web ChatGPT
+        // system prompts, to get close to OpenAI Web AoTu
         const shouldInjectSystemPrompts = modelConfig.enableInjectSystemPrompts;
         const systemPrompts = shouldInjectSystemPrompts
           ? [
@@ -433,7 +433,7 @@ export const useChatStore = create<ChatStore>()(
         );
 
         // lets concat send messages, including 4 parts:
-        // 0. system prompt: to get close to OpenAI Web ChatGPT
+        // 0. system prompt: to get close to OpenAI Web AoTu
         // 1. long term memory: summarized memory messages
         // 2. pre-defined in-context prompts
         // 3. short term memory: latest n messages
@@ -511,7 +511,7 @@ export const useChatStore = create<ChatStore>()(
           api.llm.chat({
             messages: topicMessages,
             config: {
-              model: "gpt-3.5-turbo",
+              model: "AoTu-3.5-turbo",
             },
             onFinish(message) {
               get().updateCurrentSession(
@@ -565,7 +565,7 @@ export const useChatStore = create<ChatStore>()(
                 date: "",
               }),
             ),
-            config: { ...modelConfig, stream: true, model: "gpt-3.5-turbo" },
+            config: { ...modelConfig, stream: true, model: "AoTu-3.5-turbo" },
             onUpdate(message) {
               session.memoryPrompt = message;
             },
@@ -907,7 +907,7 @@ export const useChatStoreTest = create<ChatStore>()(
         // in-context prompts
         const contextPrompts = session.mask.context.slice();
 
-        // system prompts, to get close to OpenAI Web ChatGPT
+        // system prompts, to get close to OpenAI Web AoTu
         const shouldInjectSystemPrompts = modelConfig.enableInjectSystemPrompts;
         const systemPrompts = shouldInjectSystemPrompts
           ? [
@@ -945,7 +945,7 @@ export const useChatStoreTest = create<ChatStore>()(
         );
 
         // lets concat send messages, including 4 parts:
-        // 0. system prompt: to get close to OpenAI Web ChatGPT
+        // 0. system prompt: to get close to OpenAI Web AoTu
         // 1. long term memory: summarized memory messages
         // 2. pre-defined in-context prompts
         // 3. short term memory: latest n messages
@@ -1023,7 +1023,7 @@ export const useChatStoreTest = create<ChatStore>()(
           api.llm.chat({
             messages: topicMessages,
             config: {
-              model: "gpt-3.5-turbo",
+              model: "AoTu-3.5-turbo",
             },
             onFinish(message) {
               get().updateCurrentSession(
@@ -1077,7 +1077,7 @@ export const useChatStoreTest = create<ChatStore>()(
                 date: "",
               }),
             ),
-            config: { ...modelConfig, stream: true, model: "gpt-3.5-turbo" },
+            config: { ...modelConfig, stream: true, model: "AoTu-3.5-turbo" },
             onUpdate(message) {
               session.memoryPrompt = message;
             },
@@ -1422,7 +1422,7 @@ export const useChatStoreVisitor = create<ChatStore>()(
         // in-context prompts
         const contextPrompts = session.mask.context.slice();
 
-        // system prompts, to get close to OpenAI Web ChatGPT
+        // system prompts, to get close to OpenAI Web AoTu
         const shouldInjectSystemPrompts = modelConfig.enableInjectSystemPrompts;
         const systemPrompts = shouldInjectSystemPrompts
           ? [
@@ -1460,7 +1460,7 @@ export const useChatStoreVisitor = create<ChatStore>()(
         );
 
         // lets concat send messages, including 4 parts:
-        // 0. system prompt: to get close to OpenAI Web ChatGPT
+        // 0. system prompt: to get close to OpenAI Web AoTu
         // 1. long term memory: summarized memory messages
         // 2. pre-defined in-context prompts
         // 3. short term memory: latest n messages
@@ -1538,7 +1538,7 @@ export const useChatStoreVisitor = create<ChatStore>()(
           api.llm.chat({
             messages: topicMessages,
             config: {
-              model: "gpt-3.5-turbo",
+              model: "AoTu-3.5-turbo",
             },
             onFinish(message) {
               get().updateCurrentSession(
@@ -1592,7 +1592,7 @@ export const useChatStoreVisitor = create<ChatStore>()(
                 date: "",
               }),
             ),
-            config: { ...modelConfig, stream: true, model: "gpt-3.5-turbo" },
+            config: { ...modelConfig, stream: true, model: "AoTu-3.5-turbo" },
             onUpdate(message) {
               session.memoryPrompt = message;
             },
