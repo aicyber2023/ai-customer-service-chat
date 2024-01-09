@@ -105,10 +105,13 @@ export function SessionConfigModel(props: { onClose: () => void }) {
   const query = new URLSearchParams(location.search);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const chatStore = query.get("isTest")
-    ? useChatStoreTest()
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreTest()
     : query.get("isVisitor")
-    ? useChatStoreVisitor()
-    : useChatStore();
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreVisitor()
+    : // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStore();
   const session = chatStore.currentSession();
   const maskStore = useMaskStore();
   const navigate = useNavigate();
@@ -179,10 +182,13 @@ function PromptToast(props: {
   const query = new URLSearchParams(location.search);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const chatStore = query.get("isTest")
-    ? useChatStoreTest()
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreTest()
     : query.get("isVisitor")
-    ? useChatStoreVisitor()
-    : useChatStore();
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreVisitor()
+    : // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStore();
   const session = chatStore.currentSession();
   const context = session.mask.context;
 
@@ -395,10 +401,13 @@ function ClearContextDivider() {
   const query = new URLSearchParams(location.search);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const chatStore = query.get("isTest")
-    ? useChatStoreTest()
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreTest()
     : query.get("isVisitor")
-    ? useChatStoreVisitor()
-    : useChatStore();
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreVisitor()
+    : // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStore();
 
   return (
     <div
@@ -508,10 +517,13 @@ export function ChatActions(props: {
   const query = new URLSearchParams(location.search);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const chatStore = query.get("isTest")
-    ? useChatStoreTest()
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreTest()
     : query.get("isVisitor")
-    ? useChatStoreVisitor()
-    : useChatStore();
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreVisitor()
+    : // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStore();
 
   //是否未测试 从管理端跳转过来的
   const isTest = Boolean(query.get("isTest"));
@@ -675,10 +687,13 @@ export function EditMessageModal(props: { onClose: () => void }) {
   const query = new URLSearchParams(location.search);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const chatStore = query.get("isTest")
-    ? useChatStoreTest()
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreTest()
     : query.get("isVisitor")
-    ? useChatStoreVisitor()
-    : useChatStore();
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreVisitor()
+    : // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStore();
   const session = chatStore.currentSession();
   const [messages, setMessages] = useState(session.messages.slice());
 
@@ -745,10 +760,13 @@ function _Chat() {
   const query = new URLSearchParams(location.search);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const chatStore = query.get("isTest")
-    ? useChatStoreTest()
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreTest()
     : query.get("isVisitor")
-    ? useChatStoreVisitor()
-    : useChatStore();
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreVisitor()
+    : // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStore();
   const session = chatStore.currentSession();
   const config = useAppConfig();
   const fontSize = config.fontSize;
@@ -1615,10 +1633,13 @@ export function Chat() {
   // //console.log("ssss",query.get("isTest"))
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const chatStore = query.get("isTest")
-    ? useChatStoreTest()
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreTest()
     : query.get("isVisitor")
-    ? useChatStoreVisitor()
-    : useChatStore();
+    ? // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStoreVisitor()
+    : // eslint-disable-next-line react-hooks/rules-of-hooks
+      useChatStore();
   const sessionIndex = chatStore.currentSessionIndex;
   return <_Chat key={sessionIndex}></_Chat>;
 }
