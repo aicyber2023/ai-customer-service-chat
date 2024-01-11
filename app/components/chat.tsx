@@ -1194,7 +1194,7 @@ function _Chat() {
     //console.log("chatStore-->",query.get("id")||localStorage.getItem("employeeId"))
     //console.log(chatStore)
     // chatStore.selectSession(1)
-    //   获取数字员工名称
+    //   获取数字客服名称
     axios({
       url:
         baseConfig.baseURL +

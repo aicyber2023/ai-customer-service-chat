@@ -124,16 +124,16 @@ export function Settings() {
 
   // 角色头像
   const [avatar, setAvatar] = useState("");
-  // 员工名称
+  // 客服名称
   const [employeeName, setEmployeeName] = useState("");
-  //工作职能列表
+  //客服模板列表
   const [zhinengItem, setZhineng] = useState([
     {
       id: "",
       name: "",
     },
   ]);
-  //选中的工作职能
+  //选中的客服模板
   const [selectZhiNeng, setSelectZhiNeng] = useState("");
   //知识库列表
   const [nowledgeBase, setNowledgeBase] = useState([
@@ -224,11 +224,11 @@ export function Settings() {
   const [modelSwitchList, setModelSwitchList] = useState([
     {
       id: 0,
-      type: "使用大模型知识",
+      type: "使用兜底话术",
     },
     {
       id: 1,
-      type: "使用兜底话术",
+      type: "使用大模型知识",
     },
   ]);
 
@@ -236,9 +236,9 @@ export function Settings() {
     const id = window.localStorage.getItem("employeeId");
     const templateId = window.localStorage.getItem("templateId");
     const token = window.localStorage.getItem("header");
-    //   获取数字员工详情信息
+    //   获取数字客服详情信息
     getEmployeeInformation();
-    // //     获取数字员工对应的模板信息
+    // //     获取数字客服对应的模板信息
     // axios({
     //     url: `http://localhost/dev-api/de/employeeTemplate/${templateId}`,
     //     method: "get",
@@ -275,7 +275,7 @@ export function Settings() {
       }
     });
   }, []);
-  // 获取数字员工信息
+  // 获取数字客服信息
   const getEmployeeInformation = () => {
     const id = window.localStorage.getItem("employeeId");
     const templateId = window.localStorage.getItem("templateId");
@@ -290,7 +290,7 @@ export function Settings() {
     }).then((res) => {
       // @ts-ignore
       if (res.data.code == 200) {
-        //console.log("数字员工获取成功", res)
+        //console.log("数字客服获取成功", res)
         setTemperature(res.data.data.temperature ?? 0.5);
         setPresencePenalty(res.data.data.presencePenalty ?? 0);
         setFrequencyPenalty(res.data.data.frequencyPenalty ?? 0);
@@ -304,7 +304,7 @@ export function Settings() {
         setSendMemory(res.data.data.sendMemory);
         // 设置选中的模板id
         setSelectZhiNeng(res.data.data.templateId);
-        // 设置数字员工名称
+        // 设置数字客服名称
         setEmployeeName(res.data.data.name);
         if (res.data.data.procedureList.length > 0) {
           setScriptArr(res.data.data.procedureList);
@@ -527,7 +527,7 @@ export function Settings() {
       </div>
 
       <div className={styles["settings"]}>
-        <h3 style={{ paddingLeft: "10px" }}>员工设置</h3>
+        <h3 style={{ paddingLeft: "10px" }}>客服设置</h3>
         <List>
           {/*  头像  */}
           <ListItem
@@ -569,8 +569,8 @@ export function Settings() {
               </div>
             </Popover>
           </ListItem>
-          {/*员工昵称*/}
-          <ListItem title={"员工昵称"}>
+          {/*客服昵称*/}
+          <ListItem title={"客服昵称"}>
             <input
               type="text"
               value={employeeName}
@@ -580,8 +580,8 @@ export function Settings() {
               maxLength={10}
             />
           </ListItem>
-          {/*工作职能*/}
-          <ListItem title={"工作职能"}>
+          {/*客服模板*/}
+          <ListItem title={"客服模板"}>
             <Select
               value={selectZhiNeng}
               onChange={(e) => {
@@ -851,10 +851,10 @@ export function Settings() {
           </ListItem>
         </List>
         {/*兜底话术列表*/}
-        {modelSwitch == 1 && (
+        {modelSwitch == 0 && (
           <h3 style={{ paddingLeft: "10px" }}>兜底话术列表</h3>
         )}
-        {modelSwitch == 1 && (
+        {modelSwitch == 0 && (
           <List>
             {/*是否自定义兜底话术*/}
             <div>

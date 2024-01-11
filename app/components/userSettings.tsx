@@ -309,7 +309,7 @@ export function UserSettings() {
   const _headers = {
     "Chat-Auth": window.localStorage.getItem("token"),
   };
-  //工作职能列表
+  //客服模板列表
 
   useEffect(() => {
     getUserInfo();

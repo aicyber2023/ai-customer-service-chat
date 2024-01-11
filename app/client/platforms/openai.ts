@@ -78,7 +78,7 @@ export class AoTuApi implements LLMApi {
         break;
       }
     }
-    const question = messages[0].content;
+    const question = messages[0]?.content;
     const requestPayload = {
       digitalEmployeeId: localStorage.getItem("employeeId"),
       userInput: question,
@@ -202,12 +202,18 @@ export class AoTuApi implements LLMApi {
           url: chatPath,
           method: "POST",
           data: requestPayload,
+          withCredentials: true,
           signal: controller.signal,
           headers: {
             Authorization: "Bearer " + localStorage.getItem("header"),
+            chat_user_token: localStorage.getItem("chat_user_token"),
           },
         }).then((res) => {
           if (res.data.code == 200) {
+            const chat_user_token = res.headers["chat_user_token"];
+            if (chat_user_token) {
+              localStorage.setItem("chat_user_token", chat_user_token);
+            }
             const message = res.data.data.outputText;
             options.onFinish(message);
           } else {

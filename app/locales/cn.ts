@@ -293,9 +293,9 @@ const cn = {
   Mask: {
     Name: "面具",
     Page: {
-      Title: "选择数字员工",
-      SubTitle: (count: number) => `${count} 个数字员工`,
-      Search: "搜索数字员工",
+      Title: "选择数字客服",
+      SubTitle: (count: number) => `${count} 个数字客服`,
+      Search: "搜索数字客服",
       Create: "新建",
     },
     Item: {
