@@ -259,32 +259,32 @@ export function Share() {
               }}
             />
           </ListItem>
-          <ListItem title={"API接入"} subTitle={"聊天内容的字体大小"}>
-            <div style={{ display: "flex" }}>
-              <div style={{ marginRight: "20px" }}>
-                <IconButton
-                  onClick={() => {
-                    muCopy(Api, "√复制成功 ");
-                  }}
-                  text={"一键复制"}
-                />
-              </div>
-              <div>
-                <IconButton
-                  text={"重新生成并复制"}
-                  onClick={() => {
-                    regeneration(true);
-                  }}
-                />
-              </div>
-            </div>
-          </ListItem>
-          <ListItem
-            title={"API文档"}
-            // subTitle={"复制代码并粘贴到您网站的<body>部分"}
-          >
-            <IconButton text={"查者文档"} />
-          </ListItem>
+          {/*<ListItem title={"API接入"}>*/}
+          {/*  <div style={{ display: "flex" }}>*/}
+          {/*    <div style={{ marginRight: "20px" }}>*/}
+          {/*      <IconButton*/}
+          {/*        onClick={() => {*/}
+          {/*          muCopy(Api, "√复制成功 ");*/}
+          {/*        }}*/}
+          {/*        text={"一键复制"}*/}
+          {/*      />*/}
+          {/*    </div>*/}
+          {/*    <div>*/}
+          {/*      <IconButton*/}
+          {/*        text={"重新生成并复制"}*/}
+          {/*        onClick={() => {*/}
+          {/*          regeneration(true);*/}
+          {/*        }}*/}
+          {/*      />*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*</ListItem>*/}
+          {/*<ListItem*/}
+          {/*  title={"API文档"}*/}
+          {/*  // subTitle={"复制代码并粘贴到您网站的<body>部分"}*/}
+          {/*>*/}
+          {/*  <IconButton text={"查看文档"} />*/}
+          {/*</ListItem>*/}
         </List>
       </div>
     </ErrorBoundary>
