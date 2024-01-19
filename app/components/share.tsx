@@ -84,7 +84,7 @@ export function Share() {
           }
           setTimeout(() => {
             setCopySuccess(false);
-          }, 30000);
+          }, 2000);
         });
     } else {
       var textArea = document.createElement("textarea");
@@ -221,14 +221,14 @@ export function Share() {
             subTitle={"您可以复制并与您的团队或客户分享"}
           >
             <div style={{ display: "flex" }}>
-              <div style={{ marginRight: "20px" }}>
-                <IconButton
-                  onClick={() => {
-                    muCopy(shareLink, "√复制成功 ");
-                  }}
-                  text={"复制登录用户地址"}
-                />
-              </div>
+              {/*<div style={{ marginRight: "20px" }}>*/}
+              {/*  <IconButton*/}
+              {/*    onClick={() => {*/}
+              {/*      muCopy(shareLink, "√复制成功 ");*/}
+              {/*    }}*/}
+              {/*    text={"复制登录用户地址"}*/}
+              {/*  />*/}
+              {/*</div>*/}
               <div>
                 <IconButton
                   text={"复制访客地址"}
