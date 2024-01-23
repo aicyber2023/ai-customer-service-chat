@@ -162,6 +162,7 @@ export function Settings() {
   // 主动打招呼语
   const [sayHelloText, setSayHelloText] =
     useState("你好，有什么可以帮助你的吗？");
+  const [greeting, setGreeting] = useState("");
   // 创造性
   const [creativeness, setCreativeness] = useState(5);
   // 干预相似问闽值
@@ -317,6 +318,8 @@ export function Settings() {
         setKbRadius(res.data.data.kbRadius ?? 0.5);
         setModelSwitch(res.data.data.modelSwitch);
         setScriptArr(res.data.data.procedureList);
+        setSayHello(res.data.data.proactivelyGreet == 0 ? false : true);
+        setGreeting(res.data.data.greeting);
         axios({
           // url: `http://localhost/dev-api/de/employeeTemplate/${res.data.data.templateId}`,
           url:
@@ -410,6 +413,7 @@ export function Settings() {
         historyMessageCount: historyMessageCount,
         sendMemory: sendMemory,
         proactivelyGreet: sayHello ? 1 : 0,
+        greeting: greeting,
         chatType: chatType,
         qaRadius: qaRadius,
         kbRadius: kbRadius,
@@ -695,10 +699,10 @@ export function Settings() {
             <ListItem title={"打招呼语设置"}>
               <input
                 type="text"
-                value={sayHelloText}
+                value={greeting}
                 style={{ width: "100%" }}
                 onChange={(e) => {
-                  setSayHelloText(e.target.value);
+                  setGreeting(e.target.value);
                 }}
               />
             </ListItem>

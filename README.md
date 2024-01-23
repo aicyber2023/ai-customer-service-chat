@@ -8,7 +8,7 @@
 ## 4.导出项目
 - npm run export
 ### 配置说明
-- app/config/url.ts 配置的是全局变量用来指定服务器路径
+- public/url.ts 配置的是全局变量用来指定服务器路径
 ### 打包文件说明
 - customer-service-chat/url.ts 配置的是全局变量用来指定请求路径
   
