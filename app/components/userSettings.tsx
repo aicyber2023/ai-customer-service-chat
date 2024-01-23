@@ -10,7 +10,7 @@ import ClearIcon from "../icons/clear.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 import EditIcon from "../icons/edit.svg";
 import EyeIcon from "../icons/eye.svg";
-import baseConfig from "../config/url";
+import baseConfig from "../../public/url";
 import {
   Input,
   List,

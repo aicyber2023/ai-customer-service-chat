@@ -29,7 +29,7 @@ import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 import { api } from "../client/api";
 import { useAccessStore, useChatStore } from "../store";
-import baseConfig from "@/app/config/url";
+import baseConfig from "@/public/url";
 import { Avatar } from "@/app/components/emoji";
 import LogoIcon from "@/app/icons/logo.png";
 import axios from "axios";

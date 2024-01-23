@@ -5,7 +5,7 @@ import {
   REQUEST_TIMEOUT_MS,
 } from "@/app/constant";
 import { useAccessStore, useAppConfig, useChatStore } from "@/app/store";
-import baseURL from "@/app/config/url";
+import baseURL from "@/public/url";
 import { ChatOptions, getHeaders, LLMApi, LLMModel, LLMUsage } from "../api";
 import Locale from "../../locales";
 import {
@@ -17,6 +17,7 @@ import { getClientConfig } from "@/app/config/client";
 import axios from "axios";
 import exports from "webpack";
 import baseURI = exports.RuntimeGlobals.baseURI;
+import Log from "@hello-pangea/dnd/src/debug/middleware/log";
 
 export interface OpenAIListModelResponse {
   object: string;
@@ -197,6 +198,7 @@ export class AoTuApi implements LLMApi {
           openWhenHidden: true,
         });
       } else {
+        const typeTest = localStorage.getItem("isTest") === "true";
         //console.log(chatPath)
         axios({
           url: chatPath,
@@ -206,14 +208,28 @@ export class AoTuApi implements LLMApi {
           signal: controller.signal,
           headers: {
             Authorization: "Bearer " + localStorage.getItem("header"),
-            chat_user_token: localStorage.getItem("chat_user_token"),
+            "chat-user-token": typeTest
+              ? ""
+              : localStorage.getItem("Chat-User-Token"),
+            "chat-user-token-test": typeTest
+              ? localStorage.getItem("Chat-User-Token-Test")
+              : "",
           },
         }).then((res) => {
           if (res.data.code == 200) {
-            const chat_user_token = res.headers["chat_user_token"];
+            const chat_user_token = res.headers["chat-user-token"];
+            const chat_user_token_test = res.headers["chat-user-token-test"];
+            console.log(chat_user_token, chat_user_token_test);
             if (chat_user_token) {
-              localStorage.setItem("chat_user_token", chat_user_token);
+              localStorage.setItem("Chat-User-Token", chat_user_token);
             }
+            if (chat_user_token_test) {
+              localStorage.setItem(
+                "Chat-User-Token-Test",
+                chat_user_token_test,
+              );
+            }
+
             const message = res.data.data.outputText;
             options.onFinish(message);
           } else {

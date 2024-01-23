@@ -34,7 +34,7 @@ import AutoIcon from "../icons/auto.svg";
 import BottomIcon from "../icons/bottom.svg";
 import StopIcon from "../icons/pause.svg";
 import RobotIcon from "../icons/robot.svg";
-import baseConfig from "../config/url";
+import baseConfig from "../../public/url";
 
 import {
   ChatMessage,
@@ -560,7 +560,7 @@ export function ChatActions(props: {
         type: "gotoKb",
         data: window.localStorage.getItem("employeeId"),
       },
-      baseConfig.closeUrl,
+      baseConfig.baseURL.replace("/prod-api", ""),
     );
   };
   return (
@@ -1313,7 +1313,7 @@ function _Chat() {
         type: "close",
         data: null,
       },
-      baseConfig.closeUrl,
+      baseConfig.baseURL.replace("/prod-api", ""),
     );
   };
   return (

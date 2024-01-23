@@ -11,9 +11,9 @@ import copy = Simulate.copy;
 import { api } from "@/app/client/api";
 import { rgb } from "khroma";
 import { List, ListItem, showConfirm } from "./ui-lib";
-import baseURL from "@/app/config/url";
+import baseURL from "@/public/url";
 import axios from "axios";
-import baseConfig from "@/app/config/url";
+import baseConfig from "@/public/url";
 
 export function Share() {
   const navigate = useNavigate();

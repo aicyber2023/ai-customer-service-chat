@@ -6,7 +6,7 @@ import ResetIcon from "../icons/reload.svg";
 import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
 import SaveIcon from "../icons/copy.svg";
-import baseConfig from "../config/url";
+import baseConfig from "../../public/url";
 import SubIcon from "../icons/sub.svg";
 import {
   Input,
@@ -159,6 +159,9 @@ export function Settings() {
   const [selectSpeakingStyle, setSelectSpeakingStyle] = useState("");
   // 是否主动打招呼
   const [sayHello, setSayHello] = useState(true);
+  // 主动打招呼语
+  const [sayHelloText, setSayHelloText] =
+    useState("你好，有什么可以帮助你的吗？");
   // 创造性
   const [creativeness, setCreativeness] = useState(5);
   // 干预相似问闽值
@@ -677,7 +680,7 @@ export function Settings() {
           {/*    </Select>*/}
           {/*</ListItem>*/}
           {/*    是否主动打招呼话术*/}
-          <ListItem title={"是否主动打招呼"}>
+          <ListItem title={"设置招呼语"}>
             <input
               type="checkbox"
               checked={sayHello}
@@ -685,6 +688,22 @@ export function Settings() {
             ></input>
           </ListItem>
         </List>
+        {/*打招呼语设置*/}
+        {sayHello && <h3>打招呼语设置</h3>}
+        {sayHello && (
+          <List>
+            <ListItem title={"打招呼语设置"}>
+              <input
+                type="text"
+                value={sayHelloText}
+                style={{ width: "100%" }}
+                onChange={(e) => {
+                  setSayHelloText(e.target.value);
+                }}
+              />
+            </ListItem>
+          </List>
+        )}
         <h3 style={{ paddingLeft: "10px" }}>参数设置</h3>
         <List>
           {/*    随机性*/}

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Path } from "../constant";
 import { useAccessStore, useChatStore } from "../store";
 import Locale from "../locales";
-import baseConfig from "../config/url";
+import baseConfig from "../../public/url";
 import BotIcon from "../icons/bot.svg";
 import { useEffect, useState } from "react";
 import { getClientConfig } from "../config/client";

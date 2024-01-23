@@ -20,7 +20,7 @@ import { nanoid } from "nanoid";
 import { useEffect } from "react";
 import { effect } from "zod";
 import axios from "axios";
-import baseURL from "@/app/config/url";
+import baseURL from "@/public/url";
 
 export type ChatMessage = RequestMessage & {
   date: string;

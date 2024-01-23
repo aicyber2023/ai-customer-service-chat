@@ -12,7 +12,7 @@ import DeleteIcon from "../icons/delete.svg";
 import EyeIcon from "../icons/eye.svg";
 import CopyIcon from "../icons/copy.svg";
 import DragIcon from "../icons/drag.svg";
-import baseURL from "@/app/config/url";
+import baseURL from "@/public/url";
 import { DEFAULT_MASK_AVATAR, Mask, useMaskStore } from "../store/mask";
 import {
   ChatMessage,
@@ -51,7 +51,7 @@ import {
   OnDragEndResponder,
 } from "@hello-pangea/dnd";
 import axios from "axios";
-import baseConfig from "@/app/config/url";
+import baseConfig from "@/public/url";
 
 const query = new URLSearchParams(location.search);
 
