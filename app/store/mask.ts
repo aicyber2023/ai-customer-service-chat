@@ -8,6 +8,7 @@ import { StoreKey } from "../constant";
 import { nanoid } from "nanoid";
 
 export type Mask = {
+  companyAvatar: string;
   templateId: string;
   id: string;
   createdAt: number;
@@ -41,6 +42,7 @@ export const createEmptyMask = () =>
     templateId: "",
     id: nanoid(),
     avatar: DEFAULT_MASK_AVATAR,
+    companyAvatar: DEFAULT_MASK_AVATAR,
     name: "DEFAULT_TOPIC",
     context: [],
     syncGlobalConfig: true, // use global config as default

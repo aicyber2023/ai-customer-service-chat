@@ -401,6 +401,7 @@ export function MaskPage() {
 
   useEffect(() => {
     axios({
+      // @ts-ignore
       url: baseURL.baseURL + "/de/chat/selectUserDe",
       method: "post",
       headers: {
@@ -471,7 +472,7 @@ export function MaskPage() {
     if (!f) {
       axios({
         // @ts-ignore
-        url: baseConfig.baseURL + `/de/employeeTemplate/${m.templateId}`,
+        url: baseURL.baseURL + `/de/employeeTemplate/${m.templateId}`,
         headers: {
           Authorization: "Bearer " + window.localStorage.getItem("header"),
         },

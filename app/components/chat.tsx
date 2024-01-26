@@ -560,6 +560,7 @@ export function ChatActions(props: {
         type: "gotoKb",
         data: window.localStorage.getItem("employeeId"),
       },
+      // @ts-ignore
       baseConfig.baseURL.replace("/prod-api", ""),
     );
   };
@@ -1156,6 +1157,7 @@ function _Chat() {
     const isLogin = window.localStorage.getItem("token");
     if (isLogin) {
       axios({
+        // @ts-ignore
         url: baseConfig.baseURL + "/de/chat/showUserAvatar",
         method: "post",
         headers: _headers,
@@ -1313,6 +1315,7 @@ function _Chat() {
         type: "close",
         data: null,
       },
+      // @ts-ignore
       baseConfig.baseURL.replace("/prod-api", ""),
     );
   };

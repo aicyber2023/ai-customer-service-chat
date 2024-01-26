@@ -195,6 +195,10 @@ export const useChatStore = create<ChatStore>()(
         if (mask) {
           const config = useAppConfig.getState();
           const globalModelConfig = config.modelConfig;
+          // @ts-ignore
+          delete mask.avatar;
+          // @ts-ignore
+          delete mask.companyAvatar;
           session.mask = {
             ...mask,
             modelConfig: {
@@ -707,6 +711,11 @@ export const useChatStoreTest = create<ChatStore>()(
         if (mask) {
           const config = useAppConfig.getState();
           const globalModelConfig = config.modelConfig;
+
+          // @ts-ignore
+          delete mask.avatar;
+          // @ts-ignore
+          delete mask.companyAvatar;
           session.mask = {
             ...mask,
             modelConfig: {
@@ -1220,6 +1229,10 @@ export const useChatStoreVisitor = create<ChatStore>()(
         if (mask) {
           const config = useAppConfig.getState();
           const globalModelConfig = config.modelConfig;
+          // @ts-ignore
+          delete mask.avatar;
+          // @ts-ignore
+          delete mask.companyAvatar;
           session.mask = {
             ...mask,
             modelConfig: {

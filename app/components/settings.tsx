@@ -234,7 +234,12 @@ export function Settings() {
       id: 1,
       type: "使用大模型知识",
     },
+    {
+      id: 2,
+      type: "智能兜底",
+    },
   ]);
+  const [quantityOfInformation, setQuantityOfInformation] = useState(1);
 
   useEffect(() => {
     const id = window.localStorage.getItem("employeeId");
@@ -259,6 +264,7 @@ export function Settings() {
     //     获取所有模板列表
     axios({
       // url: "http://localhost/dev-api/de/employeeTemplate/selectList",
+      // @ts-ignore
       url: baseConfig.baseURL + "/de/employeeTemplate/selectList",
       method: "get",
       headers: {
@@ -286,6 +292,7 @@ export function Settings() {
     const token = window.localStorage.getItem("header");
     axios({
       // url: `http://localhost/dev-api/de/digitalEmployee/${id}`,
+      // @ts-ignore
       url: baseConfig.baseURL + `/de/digitalEmployee/${id}`,
       method: "get",
       headers: {
@@ -320,9 +327,11 @@ export function Settings() {
         setScriptArr(res.data.data.procedureList);
         setSayHello(res.data.data.proactivelyGreet == 0 ? false : true);
         setGreeting(res.data.data.greeting);
+        setQuantityOfInformation(res.data.data.quantityOfInformation);
         axios({
           // url: `http://localhost/dev-api/de/employeeTemplate/${res.data.data.templateId}`,
           url:
+            // @ts-ignore
             baseConfig.baseURL +
             `/de/employeeTemplate/${res.data.data.templateId}`,
           method: "get",
@@ -359,6 +368,7 @@ export function Settings() {
     formdata.append("file", file);
     formdata.append("employeeId", employeeId as string);
     axios({
+      // @ts-ignore
       url: baseConfig.baseURL + "/de/digitalEmployee/uploadAvatar",
       // url: "http://127.0.0.1:8080" + "/de/chat/uploadUserAvatar",
       method: "post",
@@ -381,6 +391,7 @@ export function Settings() {
     formdata.append("file", logoFile);
     formdata.append("employeeId", employeeId as string);
     axios({
+      // @ts-ignore
       url: baseConfig.baseURL + "/de/digitalEmployee/uploadCompanyAvatar",
       method: "post",
       data: formdata,
@@ -396,6 +407,7 @@ export function Settings() {
   // 保存设置
   const SaveSettings = () => {
     axios({
+      // @ts-ignore
       url: baseConfig.baseURL + "/de/digitalEmployee",
       // url:"http://127.0.0.1:8080"+"/de/digitalEmployee",
       method: "put",
@@ -422,6 +434,7 @@ export function Settings() {
           item.id = "";
           return item;
         }),
+        quantityOfInformation: quantityOfInformation,
       },
     }).then((res) => {
       if (res.data.code == 200) {
@@ -874,10 +887,10 @@ export function Settings() {
           </ListItem>
         </List>
         {/*兜底话术列表*/}
-        {modelSwitch == 0 && (
+        {(modelSwitch == 0 || modelSwitch == 2) && (
           <h3 style={{ paddingLeft: "10px" }}>兜底话术列表</h3>
         )}
-        {modelSwitch == 0 && (
+        {(modelSwitch == 0 || modelSwitch == 2) && (
           <List>
             {/*是否自定义兜底话术*/}
             <div>
@@ -955,6 +968,30 @@ export function Settings() {
                 </div>
               </div>
             </div>
+          </List>
+        )}
+        {modelSwitch == 2 && <h3>信息量参数设置</h3>}
+        {modelSwitch == 2 && (
+          <List>
+            <ListItem
+              title={"信息量"}
+              subTitle={
+                "值越高，语句内容业务性越强；值越低，语句内容日常性越强。"
+              }
+            >
+              <InputRange
+                title={`${quantityOfInformation}`}
+                value={quantityOfInformation}
+                min="0.5"
+                max="5"
+                step="0.1"
+                leftText={"0.5"}
+                rightText={"5"}
+                onChange={(e) => {
+                  setQuantityOfInformation(Number(e.currentTarget.value));
+                }}
+              ></InputRange>
+            </ListItem>
           </List>
         )}
 

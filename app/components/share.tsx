@@ -14,6 +14,7 @@ import { List, ListItem, showConfirm } from "./ui-lib";
 import baseURL from "@/public/url";
 import axios from "axios";
 import baseConfig from "@/public/url";
+import Popup from "@/app/components/messageBox";
 
 export function Share() {
   const navigate = useNavigate();
@@ -22,7 +23,8 @@ export function Share() {
   // 分享成功的url
   const [successCopyURL, setSuccessCopyURL] = useState("");
   //网页分享地址 第一个input的值
-  const [shareLink, setShareLink] = useState(baseURL.shareURL);
+  // @ts-ignore
+  const [shareLink, setShareLink] = useState(baseConfig.shareURL);
   //嵌入到其他页面的 input输入框的值
   const [implant, setImplant] = useState("");
   //API接入
@@ -31,13 +33,17 @@ export function Share() {
   const [copySuccess, setCopySuccess] = useState(false);
   // API模板
   const [showTemplateHtml, setShowTemplateHtml] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     const query = new URLSearchParams(location.search);
     const employeeId = window.localStorage.getItem("employeeId");
     const templateId = window.localStorage.getItem("templateId");
     const templateText = `
 <iframe
-    src="${baseURL.shareURL}/#/?isVisitor=1&id=${employeeId}&templateId=${templateId}"
+    src="${
+      // @ts-ignore
+      baseConfig.shareURL
+    }/#/?isVisitor=1&id=${employeeId}&templateId=${templateId}"
     style="width: 400px;height: 500px;border: 1px solid #ccc;border-radius:25px ;"
     allow="clipboard-read; clipboard-write">
      <p>Your browser does not support iframes.</p>
@@ -46,7 +52,10 @@ export function Share() {
     const showTemplateHtml = `
 √复制成功 请将代码粘贴到您网站的<body>部分 
 <iframe
-  src="${baseURL.shareURL}/#/?isVisitor=1&id=${employeeId}&templateId=${templateId}"
+  src="${
+    // @ts-ignore
+    baseConfig.shareURL
+  }/#/?isVisitor=1&id=${employeeId}&templateId=${templateId}"
   style="width: 400px;height: 500px;border: 1px solid #ccc;border-radius:25px ;"
   allow="clipboard-read; clipboard-write">
     <p>Your browser does not support iframes.</p>
@@ -55,14 +64,25 @@ export function Share() {
     setImplant(templateText);
     setShowTemplateHtml(showTemplateHtml);
     setShareLink(
-      baseURL.shareURL +
+      // @ts-ignore
+      baseConfig.shareURL +
         `?createBy=${
           query.get("createBy") || window.localStorage.getItem("createBy")
         }`,
     );
     //     获取API字符串
-    regeneration(false);
+    getApi();
   }, []);
+  const getApi = () => {
+    const id = localStorage.getItem("employeeId");
+    axios({
+      url: baseConfig.baseURL + `/de/digitalEmployee/${id}`,
+    }).then((res) => {
+      if (res.data.code == 200) {
+        setApi(res.data.data.employeeKey);
+      }
+    });
+  };
   //一键复制
   const muCopy = async (
     text: string | undefined,
@@ -113,8 +133,12 @@ export function Share() {
   // 重新生成并复制
   const regeneration = (isCopy: boolean) => {
     axios({
-      url: baseConfig.baseURL + "/de/chatToken/generateAppToken",
-      method: "get",
+      // @ts-ignore
+      url: baseConfig.baseURL + "/de/digitalEmployee/updateApiKey",
+      method: "post",
+      data: {
+        id: localStorage.getItem("employeeId"),
+      },
       headers: {
         Authorization: "Bearer " + window.localStorage.getItem("header"),
       },
@@ -127,6 +151,21 @@ export function Share() {
         }
       }
     });
+  };
+
+  const closePopup = () => {
+    setIsOpen(false);
+  };
+
+  const handleConfirm = () => {
+    // 在这里添加确定按钮点击后的逻辑
+    closePopup();
+    regeneration(true);
+  };
+
+  const handleCancel = () => {
+    // 在这里添加取消按钮点击后的逻辑
+    closePopup();
   };
 
   return (
@@ -235,7 +274,8 @@ export function Share() {
                   onClick={() => {
                     muCopy(
                       `${
-                        baseURL.shareURL
+                        // @ts-ignore
+                        baseConfig.shareURL
                       }/#/?isVisitor=1&id=${window.localStorage.getItem(
                         "employeeId",
                       )}&templateId=${window.localStorage.getItem(
@@ -259,34 +299,47 @@ export function Share() {
               }}
             />
           </ListItem>
-          {/*<ListItem title={"API接入"}>*/}
-          {/*  <div style={{ display: "flex" }}>*/}
-          {/*    <div style={{ marginRight: "20px" }}>*/}
-          {/*      <IconButton*/}
-          {/*        onClick={() => {*/}
-          {/*          muCopy(Api, "√复制成功 ");*/}
-          {/*        }}*/}
-          {/*        text={"一键复制"}*/}
-          {/*      />*/}
-          {/*    </div>*/}
-          {/*    <div>*/}
-          {/*      <IconButton*/}
-          {/*        text={"重新生成并复制"}*/}
-          {/*        onClick={() => {*/}
-          {/*          regeneration(true);*/}
-          {/*        }}*/}
-          {/*      />*/}
-          {/*    </div>*/}
-          {/*  </div>*/}
-          {/*</ListItem>*/}
-          {/*<ListItem*/}
-          {/*  title={"API文档"}*/}
-          {/*  // subTitle={"复制代码并粘贴到您网站的<body>部分"}*/}
-          {/*>*/}
-          {/*  <IconButton text={"查看文档"} />*/}
-          {/*</ListItem>*/}
+          <ListItem title={"API KEY"}>
+            <div style={{ display: "flex" }}>
+              <div style={{ marginRight: "20px" }}>
+                <IconButton
+                  onClick={() => {
+                    muCopy(Api, "√复制成功 ");
+                  }}
+                  text={"一键复制"}
+                />
+              </div>
+              <div>
+                <IconButton
+                  text={"重新生成并复制"}
+                  onClick={() => {
+                    setIsOpen(true);
+                  }}
+                />
+              </div>
+            </div>
+          </ListItem>
+          <ListItem
+            title={"API文档"}
+            // subTitle={"复制代码并粘贴到您网站的<body>部分"}
+          >
+            <IconButton
+              text={"查看文档"}
+              onClick={() => {
+                window.open(
+                  "https://github.com/aicyber2023/ai-customer-service-admin",
+                );
+              }}
+            />
+          </ListItem>
         </List>
       </div>
+      <Popup
+        isOpen={isOpen}
+        onClose={handleCancel}
+        onCancel={handleCancel}
+        onConfirm={handleConfirm}
+      />
     </ErrorBoundary>
   );
 }

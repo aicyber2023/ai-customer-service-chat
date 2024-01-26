@@ -91,6 +91,7 @@ function UpdatePassword(props: { onClose?: () => void }) {
     }
     axios({
       url:
+        // @ts-ignore
         baseConfig.baseURL +
         `/de/chat/updateUserPwd?oldPassword=${oledPassword}&newPassword=${newPassword1}`,
       headers: _headers,
@@ -317,6 +318,7 @@ export function UserSettings() {
 
   const getUserInfo = () => {
     axios({
+      // @ts-ignore
       url: baseConfig.baseURL + "/de/chat/getUserInfo",
       method: "post",
       headers: _headers,
@@ -325,6 +327,7 @@ export function UserSettings() {
         //console.log("nickName:", res);
         setUserInfo(res.data.data);
         return axios({
+          // @ts-ignore
           url: baseConfig.baseURL + "/de/chat/showUserAvatar",
           method: "post",
           headers: _headers,
@@ -356,6 +359,7 @@ export function UserSettings() {
     var formdata = new FormData();
     formdata.append("file", file);
     axios({
+      // @ts-ignore
       url: baseConfig.baseURL + "/de/chat/uploadUserAvatar",
       method: "post",
       headers: _headers,
@@ -375,6 +379,7 @@ export function UserSettings() {
 
   const uploadUserInfo = () => {
     axios({
+      // @ts-ignore
       url: baseConfig.baseURL + "/de/chat/modifyUser",
       method: "post",
       headers: _headers,

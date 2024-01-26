@@ -37,7 +37,7 @@
     "app/calcTextareaHeight.ts",
     "xxx123/types/**/*.ts",
     "digital-employee-chat/types/**/*.ts",
-    "customer-service-chat/types/**/*.ts"
+    "customer-service-chat/types/**/*.ts",
   ],
   "exclude": [
     "node_modules"

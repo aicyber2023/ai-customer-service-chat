@@ -33,6 +33,7 @@ export function AuthPage() {
   const query = new URLSearchParams(location.search);
   useEffect(() => {
     axios({
+      // @ts-ignore
       url: baseConfig.baseURL + "/captchaImage",
       // url:"http://192.168.1.121:8080"+"/captchaImage",
     }).then((res) => {
@@ -44,6 +45,7 @@ export function AuthPage() {
 
   const getCode = () => {
     axios({
+      // @ts-ignore
       url: baseConfig.baseURL + "/captchaImage",
       // url:"http://192.168.1.121:8080"+"/captchaImage",
     }).then((res) => {
@@ -52,6 +54,7 @@ export function AuthPage() {
   };
   const login = () => {
     axios({
+      // @ts-ignore
       url: baseConfig.baseURL + "/de/chat/login",
       // url:"http://192.168.1.121:8080"+"/de/chat/login",
       method: "post",
@@ -96,77 +99,78 @@ export function AuthPage() {
   };
 
   return (
-    <div className={styles["auth-page"]}>
-      {/*<div className={`no-dark ${styles["auth-logo"]}`}>*/}
-      {/*  <BotIcon />*/}
-      {/*</div>*/}
-
-      <div className={styles["auth-title"]}>需要验证身份</div>
-      <div className={styles["auth-tips"]}>验证通过即可进入</div>
-
-      {/*  用户名*/}
-      <input
-        className={styles["auth-input"]}
-        type="text"
-        placeholder="请填写企业账号"
-        value={userName}
-        onChange={(e) => {
-          setUserName(e.currentTarget.value);
-        }}
-      />
-      {/*用户ID*/}
-      <input
-        className={styles["auth-input"]}
-        type="text"
-        placeholder="请填写用户名称"
-        value={chatUserName}
-        onChange={(e) => {
-          setChatUserName(e.currentTarget.value);
-        }}
-      />
-      {/*密码*/}
-      <input
-        className={styles["auth-input"]}
-        type="password"
-        placeholder="请填写密码"
-        value={password}
-        onChange={(e) => {
-          setPassword(e.currentTarget.value);
-        }}
-      />
-
-      <div className={styles["code"]}>
-        <input
-          type="text"
-          placeholder={"请输入验证码"}
-          value={imgCode}
-          onChange={(e) => {
-            setImgCode(e.target.value);
-          }}
-        />
-        <img
-          src={"data:image/jpeg;base64," + codeObj.data.img}
-          onClick={() => {
-            getCode();
-          }}
-          width={80}
-          height={40}
-        />
-      </div>
-
-      <div className={styles["auth-actions"]}>
-        <IconButton
-          text={"登录"}
-          type="primary"
-          onClick={() => {
-            login();
-          }}
-        />
-        {/*<IconButton text={"稍后登录"} onClick={()=>{*/}
-        {/*    window.localStorage.setItem("visitor",String(true));*/}
-        {/*    goHome()*/}
-        {/*}} />*/}
-      </div>
-    </div>
+    // <div className={styles["auth-page"]}>
+    //   {/*<div className={`no-dark ${styles["auth-logo"]}`}>*/}
+    //   {/*  <BotIcon />*/}
+    //   {/*</div>*/}
+    //
+    //   <div className={styles["auth-title"]}>需要验证身份</div>
+    //   <div className={styles["auth-tips"]}>验证通过即可进入</div>
+    //
+    //   {/*  用户名*/}
+    //   <input
+    //     className={styles["auth-input"]}
+    //     type="text"
+    //     placeholder="请填写企业账号"
+    //     value={userName}
+    //     onChange={(e) => {
+    //       setUserName(e.currentTarget.value);
+    //     }}
+    //   />
+    //   {/*用户ID*/}
+    //   <input
+    //     className={styles["auth-input"]}
+    //     type="text"
+    //     placeholder="请填写用户名称"
+    //     value={chatUserName}
+    //     onChange={(e) => {
+    //       setChatUserName(e.currentTarget.value);
+    //     }}
+    //   />
+    //   {/*密码*/}
+    //   <input
+    //     className={styles["auth-input"]}
+    //     type="password"
+    //     placeholder="请填写密码"
+    //     value={password}
+    //     onChange={(e) => {
+    //       setPassword(e.currentTarget.value);
+    //     }}
+    //   />
+    //
+    //   <div className={styles["code"]}>
+    //     <input
+    //       type="text"
+    //       placeholder={"请输入验证码"}
+    //       value={imgCode}
+    //       onChange={(e) => {
+    //         setImgCode(e.target.value);
+    //       }}
+    //     />
+    //     <img
+    //       src={"data:image/jpeg;base64," + codeObj.data.img}
+    //       onClick={() => {
+    //         getCode();
+    //       }}
+    //       width={80}
+    //       height={40}
+    //     />
+    //   </div>
+    //
+    //   <div className={styles["auth-actions"]}>
+    //     <IconButton
+    //       text={"登录"}
+    //       type="primary"
+    //       onClick={() => {
+    //         login();
+    //       }}
+    //     />
+    //     {/*<IconButton text={"稍后登录"} onClick={()=>{*/}
+    //     {/*    window.localStorage.setItem("visitor",String(true));*/}
+    //     {/*    goHome()*/}
+    //     {/*}} />*/}
+    //   </div>
+    // </div>
+    <div className={styles["errorPage"]}></div>
   );
 }
